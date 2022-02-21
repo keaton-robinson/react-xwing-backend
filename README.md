@@ -1,2 +1,7 @@
 # react-xwing-backend
-An api backend that for my react-xwing-squad-builder for users to save squads and load previously saved squads
+Coming soon.
+I'll be making a simple REST api powered by Node/Express. I plan to use MongoDB Atlas as my database. 
+
+This should be a pretty simple api. I should mostly just need CRUD operations for user squads.
+
+I intend to use google OAuth to begin with for authentication & authorization. 
