@@ -1,0 +1,29 @@
+{
+  "name": "react-xwing-backend",
+  "version": "1.0.0",
+  "description": "Coming soon.\r I'll be making a simple REST api powered by Node/Express. I plan to use MongoDB Atlas as my database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keaton-robinson/react-xwing-backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/keaton-robinson/react-xwing-backend/issues"
+  },
+  "homepage": "https://github.com/keaton-robinson/react-xwing-backend#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.3",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}

@@ -1,0 +1,163 @@
+{
+    "userId": 23423,
+    "faction": "Rebel Alliance",
+    "name": "My random rebel squad",
+    "date_saved": "01-21-2022",
+    "pilots": [
+        {
+            "id": 68,
+            "selectedUpgrades": [
+                {
+                    "slot": "Talent",
+                    "key": "Talent1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Crew",
+                    "key": "Crew1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Modification",
+                    "key": "Modification1",
+                    "selectedUpgradeId": 108
+                },
+                {
+                    "slot": "Turret",
+                    "key": "Turret1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Title",
+                    "key": "Title1",
+                    "selectedUpgradeId": null
+                }
+            ]
+        },
+        {
+            "id": 76,
+            "selectedUpgrades": [
+                {
+                    "slot": "Sensor",
+                    "key": "Sensor1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Cannon",
+                    "key": "Cannon1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Cannon",
+                    "key": "Cannon2",
+                    "selectedUpgradeId": 13
+                },
+                {
+                    "slot": "Torpedo",
+                    "key": "Torpedo1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Modification",
+                    "key": "Modification1",
+                    "selectedUpgradeId": 164
+                },
+                {
+                    "slot": "Configuration",
+                    "key": "Configuration1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Title",
+                    "key": "Title1",
+                    "selectedUpgradeId": null
+                }
+            ]
+        },
+        {
+            "id": 371,
+            "selectedUpgrades": [
+                {
+                    "slot": "Command",
+                    "key": "Command1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Hardpoint",
+                    "key": "Hardpoint1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Turret",
+                    "key": "Turret1",
+                    "selectedUpgradeId": 138
+                },
+                {
+                    "slot": "Crew",
+                    "key": "Crew1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Crew",
+                    "key": "Crew2",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Team",
+                    "key": "Team1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Cargo",
+                    "key": "Cargo1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Cargo",
+                    "key": "Cargo2",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Title",
+                    "key": "Title1",
+                    "selectedUpgradeId": null
+                }
+            ]
+        },
+        {
+            "id": 80,
+            "selectedUpgrades": [
+                {
+                    "slot": "Talent",
+                    "key": "Talent1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Torpedo",
+                    "key": "Torpedo1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Crew",
+                    "key": "Crew1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Gunner",
+                    "key": "Gunner1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Astromech",
+                    "key": "Astromech1",
+                    "selectedUpgradeId": null
+                },
+                {
+                    "slot": "Modification",
+                    "key": "Modification1",
+                    "selectedUpgradeId": null
+                }
+            ]
+        }
+    ]
+}
