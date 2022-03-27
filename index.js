@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const cors = require('cors');
 const routes = require('./routes/routes');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
@@ -17,6 +18,7 @@ database.once('connected', () => {
 })
 const app = express();
 
+app.use(cors()); //planning to store auth token in javascript accessible place instead of cookies. If I switch to cookies, I need to restrict the CORS to prevent CSRF.
 app.use(express.json());
 app.use('/', routes);
 

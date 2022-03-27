@@ -7,10 +7,11 @@ const router = express.Router()
 // todo: figure out a better way to get userid 
 router.post('/squads', async (req, res) => {
     const data = new Squad({
-        userId: req.body.userId,
+        userId: 1,
         faction: req.body.faction,
-        name: req.body.name, 
-        date_saved: new Date(),
+        name: req.body.name,
+        points: req.body.points, //silly to have the front end send the points value...wouldn't do this in a real application
+        dateSaved: new Date(),
         pilots: req.body.pilots
     });
 
@@ -24,10 +25,10 @@ router.post('/squads', async (req, res) => {
 
 //Get all Method
 // todo: should only get all squads for authenticated user and chosen faction
-router.get('/squads', async (req, res) => {
+router.get('/squads/:faction', async (req, res) => {
     try{
-        const data = await Squad.find();
-        res.json(data)
+        const data = await Squad.find({"faction": req.params.faction});
+        res.status(200).json(data)
     }
     catch(error){
         res.status(500).json({message: error.message})
@@ -46,9 +47,19 @@ router.get('/squads/:id', async (req, res) => {
     }
 })
 
+
 //Update by ID Method
 // todo: should only allow updating a squad that belongs to authenticated user
 router.patch('/squads/:id', async (req, res) => {
+    
+    
+    // const data = new Squad({
+    //     name: req.body.name,
+    //     points: req.body.points, //silly to have the front end send the points value...wouldn't do this in a real application
+    //     dateSaved: new Date(),
+    //     pilots: req.body.pilots
+    // });
+    
     try {
         const id = req.params.id;
         const updatedData = req.body;
@@ -58,20 +69,20 @@ router.patch('/squads/:id', async (req, res) => {
             id, updatedData, options
         )
 
-        res.send(result)
+        res.status(200).json(result)
     }
     catch (error) {
         res.status(400).json({ message: error.message })
     }
 })
 
-//Delete by ID Method
+// Delete by ID Method
 // todo: should only allow deleting a squad that belongs to authenticated user
 router.delete('/squads/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const data = await Squad.findByIdAndDelete(id)
-        res.send(`Document with ${data.name} has been deleted..`)
+        res.json({ message: `${data.name} has been deleted...`})
     }
     catch (error) {
         res.status(400).json({ message: error.message })

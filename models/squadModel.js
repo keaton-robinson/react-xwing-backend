@@ -13,6 +13,14 @@ const squadSchema = new mongoose.Schema({
         required: true,
         type: String,
     },
+    points: {
+        required: true,
+        type: Number
+    },
+    dateSaved: {
+        required: true,
+        type: Date
+    },
     pilots: {
         required: true,
         type: Array
