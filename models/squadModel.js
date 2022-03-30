@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const squadSchema = new mongoose.Schema({
     userId: {
         required: true,
-        type: Number
+        type: mongoose.Schema.Types.ObjectId
     },
     faction: {
         required: true,

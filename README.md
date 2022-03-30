@@ -1,4 +1,7 @@
 # react-xwing-backend
+
+To see the front-end client that uses this API, visit this repo: https://github.com/keaton-robinson/react-xwing-squad-builder.
+
 Coming soon.
 I'll be making a simple REST api powered by Node/Express. I plan to use MongoDB Atlas as my database. 
 
