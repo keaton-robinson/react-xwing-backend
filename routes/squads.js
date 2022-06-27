@@ -20,10 +20,10 @@ router.post('/', async (req, res) => {
     });
 
     try {
-        const dataToSave = await data.save();
-        res.status(200).json(dataToSave);
+        const savedData = await data.save();
+        res.status(200).json({success: true,  ...savedData});
     } catch(error){
-        res.status(400).json({message: error.message});
+        res.status(400).json({success:false,  errors: [error]});
     }
 })
 
@@ -32,10 +32,10 @@ router.post('/', async (req, res) => {
 router.get('/:faction', async (req, res) => {
     try{
         const data = await Squad.find({faction: req.params.faction, userId: req.jwt.sub });
-        res.status(200).json(data)
+        res.status(200).json({success: true, ...data})
     }
     catch(error){
-        res.status(500).json({message: error.message})
+        res.status(500).json({success: false, errors: [error]})
     }
 })
 
@@ -44,10 +44,10 @@ router.get('/:faction', async (req, res) => {
 router.get('/:id', async (req, res) => {
     try {
         const data = await Squad.findOne({_id: req.params.id, userId: req.jwt.sub})  ;
-        res.json(data);
+        res.json({success: true, ...data});
     }
     catch(error){
-        res.status(500).json({message: error.message});
+        res.status(500).json({success: false, errors: [error]});
     }
 })
 
@@ -74,10 +74,10 @@ router.patch('/:id', async (req, res) => {
             { _id: id, userId: userId }, updatedData, options
         )
 
-        res.status(200).json(result)
+        res.status(200).json({success:true, ...result})
     }
     catch (error) {
-        res.status(400).json({ message: error.message })
+        res.status(400).json({ success: false, errors: [error] })
     }
 })
 
@@ -88,10 +88,10 @@ router.delete('/:id', async (req, res) => {
         const id = req.params.id;
         const userId = req.jwt.sub;
         const data = await Squad.findOneAndDelete({id: id, userId: userId});
-        res.json({ message: `${data.name} has been deleted...`})
+        res.json({ success: true, message: `${data.name} has been deleted...`})
     }
     catch (error) {
-        res.status(400).json({ message: error.message })
+        res.status(400).json({ success: false, errors: [error] })
     }
 })
 

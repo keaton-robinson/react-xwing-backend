@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 const router = require('express').Router();   
 const User = require('../models/userModel');
 const utils = require('../lib/utils');
+const {body, validationResult} = require('express-validator');
+const fs = require('fs');
 
 // Validate an existing user and issue a JWT
 router.post('/login', function(req, res, next){
@@ -25,32 +27,42 @@ router.post('/login', function(req, res, next){
         });
 });
 
+const registrationValidationChecks = [
+    body('username')
+        .exists().withMessage("Username is required")
+        .isLength({ min: 6, max: 30}).withMessage("Username must be 6 to 30 characters"),
+    body('password')
+        .exists().withMessage("Password is required")
+        .isLength({min: 6, max: 50}).withMessage("Password must be 6 to 50 characters")
+];
+
 // Register a new user
-router.post('/register', function(req, res, next){
-    const saltHash = utils.genPassword(req.body.password);
+router.post('/register', registrationValidationChecks, function(req, res, next){    
     
+    const errors = validationResult(req);
+    if(!errors.isEmpty()) {
+        return next({ statusCode: 400, errors: errors.mapped() });
+    }
+
+    const saltHash = utils.genPassword(req.body.password);
+
     const salt = saltHash.salt;
     const hash = saltHash.hash;
 
+    
     const newUser = new User({
         username: req.body.username,
         hash: hash,
         salt: salt
     });
 
-    try {
-    
-        newUser.save()
-            .then((user) => {
-                res.json({ success: true, user: { username: user.username }});
-            });
-
-    } catch (err) {
-        
-        res.json({ success: false, msg: err });
-    
-    }
-
+    newUser.save()
+    .then((user) => {
+        res.json({ success: true, user: { username: user.username }});
+    })
+    .catch((err) => {
+        next(err);
+    });
 });
 
 module.exports = router;
