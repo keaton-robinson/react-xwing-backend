@@ -30,7 +30,9 @@ router.post('/login', function(req, res, next){
 const registrationValidationChecks = [
     body('username')
         .exists().withMessage("Username is required")
-        .isLength({ min: 6, max: 30}).withMessage("Username must be 6 to 30 characters"),
+        .isLength({ min: 6, max: 30}).withMessage("Username must be 6 to 30 characters")
+        .trim()
+        .escape(),
     body('password')
         .exists().withMessage("Password is required")
         .isLength({min: 6, max: 50}).withMessage("Password must be 6 to 50 characters")
