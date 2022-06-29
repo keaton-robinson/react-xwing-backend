@@ -1,17 +1,16 @@
 const express = require('express');
 const utils = require('../lib/utils');
-const authMiddleware = utils.authMiddleware;
+const loginRequired = utils.loginRequired;
 const Squad = require('../models/squadModel');
 
 const router = express.Router()
 
-router.use(authMiddleware);
+router.use(loginRequired);
 
-//Post Method
-// todo: figure out a better way to get userid 
+//Post Method a new squad and assign it to the authenticated user
 router.post('/', async (req, res) => {
     const data = new Squad({
-        userId: req.verification.sub,
+        userId: req.jwt.sub,
         faction: req.body.faction,
         name: req.body.name,
         points: req.body.points, //silly to have the front end send the points value...wouldn't do this in a real application
@@ -27,8 +26,7 @@ router.post('/', async (req, res) => {
     }
 })
 
-//Get all Method
-// todo: should only get all squads for authenticated user and chosen faction
+//Get all squads from specified faction belonging to authenticated user
 router.get('/:faction', async (req, res) => {
     try{
         const data = await Squad.find({faction: req.params.faction, userId: req.jwt.sub });
@@ -39,8 +37,7 @@ router.get('/:faction', async (req, res) => {
     }
 })
 
-//Get by ID Method
-// todo: should only be able to show a squad for the authenticated user
+//Get squad by id belonging to authenticated user
 router.get('/:id', async (req, res) => {
     try {
         const data = await Squad.findOne({_id: req.params.id, userId: req.jwt.sub})  ;
@@ -52,8 +49,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
-//Update by ID Method
-// todo: should only allow updating a squad that belongs to authenticated user
+//Update squad by id that belongs to authenticated user
 router.patch('/:id', async (req, res) => {
     
     
@@ -81,8 +77,7 @@ router.patch('/:id', async (req, res) => {
     }
 })
 
-// Delete by ID Method
-// todo: should only allow deleting a squad that belongs to authenticated user
+// Delete squad by id that belongs to authenticated user
 router.delete('/:id', async (req, res) => {
     try {
         const id = req.params.id;
