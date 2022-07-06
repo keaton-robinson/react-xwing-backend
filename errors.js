@@ -1,9 +1,10 @@
 const errorLogger = (err, req, res, next) => {
-	console.error('\x1b[31m', err); // adding some color to error messages
+	console.error(err); 
 	next(err); 
 };
   
-const errorResponder = (err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+const errorResponder = (err, req, res, next) => {
 	res.header('Content-Type', 'application/json');
 	if(!err.statusCode) {
 		err.statusCode = 500;

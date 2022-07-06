@@ -14,7 +14,7 @@ router.post('/login', function(req, res, next){
 					return res.status(200).json({ success: true, user: { username: req.body.username, token: tokenObject.token, expiresIn: tokenObject.expires }});
 				}
 			}
-			res.status(401).json({ success: false, msg: 'Could not find matching username/password' });
+			res.status(401).json({ success: false, message: 'Could not find matching username/password' });
 		})
 		.catch((err) => {
 			next(err);
@@ -37,7 +37,7 @@ router.post('/register', registrationValidationChecks, function(req, res, next){
 	
 	const errors = validationResult(req);
 	if(!errors.isEmpty()) {
-		return next({ statusCode: 400, errors: errors.mapped() });
+		return next({ statusCode: 400, message: errors.errors[0].msg });
 	}
 
 	const saltHash = utils.genPassword(req.body.password);
