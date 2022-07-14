@@ -1,10 +1,10 @@
-const router = require('express').Router();   
-const User = require('../models/userModel');
-const utils = require('../lib/utils');
-const {body, validationResult} = require('express-validator');
+const router = require("express").Router();   
+const User = require("../models/userModel");
+const utils = require("../lib/utils");
+const {body, validationResult} = require("express-validator");
 
 // Validate an existing user and issue a JWT
-router.post('/login', function(req, res, next){
+router.post("/login", function(req, res, next){
 	User.findOne({ username: req.body.username })
 		.then((user) => {
 			if(user){
@@ -14,7 +14,7 @@ router.post('/login', function(req, res, next){
 					return res.status(200).json({ success: true, user: { username: req.body.username, token: tokenObject.token, expiresIn: tokenObject.expires }});
 				}
 			}
-			res.status(401).json({ success: false, message: 'Could not find matching username/password' });
+			res.status(401).json({ success: false, message: "Could not find matching username/password" });
 		})
 		.catch((err) => {
 			next(err);
@@ -22,18 +22,18 @@ router.post('/login', function(req, res, next){
 });
 
 const registrationValidationChecks = [
-	body('username')
-		.exists().withMessage('Username is required')
-		.isLength({ min: 6, max: 30}).withMessage('Username must be 6 to 30 characters')
+	body("username")
+		.exists().withMessage("Username is required")
+		.isLength({ min: 6, max: 30}).withMessage("Username must be 6 to 30 characters")
 		.trim()
 		.escape(),
-	body('password')
-		.exists().withMessage('Password is required')
-		.isLength({min: 6, max: 50}).withMessage('Password must be 6 to 50 characters')
+	body("password")
+		.exists().withMessage("Password is required")
+		.isLength({min: 6, max: 50}).withMessage("Password must be 6 to 50 characters")
 ];
 
 // Register a new user
-router.post('/register', registrationValidationChecks, function(req, res, next){    
+router.post("/register", registrationValidationChecks, function(req, res, next){    
 	
 	const errors = validationResult(req);
 	if(!errors.isEmpty()) {

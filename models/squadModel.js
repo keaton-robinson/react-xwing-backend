@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const squadSchema = new mongoose.Schema({
 	userId: {
@@ -27,4 +27,4 @@ const squadSchema = new mongoose.Schema({
 	}
 });
 
-module.exports = mongoose.model('Squad', squadSchema);
+module.exports = mongoose.model("Squad", squadSchema);

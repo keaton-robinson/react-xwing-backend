@@ -1,19 +1,19 @@
-const express = require('express');
-const utils = require('../lib/utils');
+const express = require("express");
+const utils = require("../lib/utils");
 const loginRequired = utils.loginRequired;
-const Squad = require('../models/squadModel');
+const Squad = require("../models/squadModel");
 
 const router = express.Router();
 
 router.use(loginRequired);
 
 //Post Method a new squad and assign it to the authenticated user
-router.post('/', async (req, res) => {
+router.post("/", async (req, res) => {
 	const data = new Squad({
 		userId: req.jwt.sub,
 		faction: req.body.faction,
 		name: req.body.name,
-		points: req.body.points, //silly to have the front end send the points value...wouldn't do this in a real application
+		points: req.body.points, //silly to have the front end send the points value...wouldn"t do this in a real application
 		dateSaved: new Date(),
 		pilots: req.body.pilots
 	});
@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
 });
 
 //Get all squads from specified faction belonging to authenticated user
-router.get('/:faction', async (req, res) => {
+router.get("/:faction", async (req, res) => {
 	try{
 		const foundSquads = await Squad.find({faction: req.params.faction, userId: req.jwt.sub });
 		res.status(200).json({success: true, squads: foundSquads});
@@ -38,7 +38,7 @@ router.get('/:faction', async (req, res) => {
 });
 
 //Get squad by id belonging to authenticated user
-router.get('/:id', async (req, res) => {
+router.get("/:id", async (req, res) => {
 	try {
 		const foundSquad = await Squad.findOne({_id: req.params.id, userId: req.jwt.sub});
 		res.json({success: true, squad: foundSquad});
@@ -50,7 +50,7 @@ router.get('/:id', async (req, res) => {
 
 
 //Update squad by id that belongs to authenticated user
-router.patch('/:id', async (req, res) => {
+router.patch("/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
 		const userId = req.jwt.sub;
@@ -65,7 +65,7 @@ router.patch('/:id', async (req, res) => {
 });
 
 // Delete squad by id that belongs to authenticated user
-router.delete('/:id', async (req, res) => {
+router.delete("/:id", async (req, res) => {
 	try {
 		const id = req.params.id;
 		const userId = req.jwt.sub;
