@@ -1,6 +1,9 @@
 {
   "name": "react-xwing-backend",
   "version": "1.0.0",
+  "engines": {
+	"node": "16.14.2"
+  },
   "description": "Coming soon.\r I'll be making a simple REST api powered by Node/Express. I plan to use MongoDB Atlas as my database.",
   "main": "index.js",
   "scripts": {

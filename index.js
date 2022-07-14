@@ -10,7 +10,7 @@ const routes = require("./routes/routes");
 const { errorLoggerMiddleware, errorResponder, logError, sendAlertNotifications, logErrorsAndShutdownServer } = require("./errors");
 const mongoose = require("mongoose");
 // eslint-disable-next-line no-undef
-const mongoString = process.env.DATABASE_URL;
+const mongoString = process.env.DATABASE_URL || "mongodb://localhost/xwing";
 
 mongoose.connect(mongoString, { heartbeatFrequencyMS: 3000 })
 	.catch(err => {
@@ -64,5 +64,4 @@ process.on("unhandledRejection", (reason) => {
 server.listen(process.env.PORT, () => {
 	// eslint-disable-next-line no-undef
 	console.log(`Server Started at ${process.env.PORT}`);
-	throw new Error("broken");
 });
