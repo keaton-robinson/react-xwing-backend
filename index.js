@@ -49,16 +49,17 @@ const server = https.createServer(
 
 // eslint-disable-next-line no-undef
 process.on("uncaughtException", (error) => {
-	logErrorsAndShutdownServer(error, server);
+	logErrorsAndShutdownServer(error, server, mongoose);
 });
 
 // // eslint-disable-next-line no-unused-vars, no-undef
 process.on("unhandledRejection", (reason) => {
-	logErrorsAndShutdownServer(reason, server);
+	logErrorsAndShutdownServer(reason, server, mongoose);
 });
 
 // eslint-disable-next-line no-undef
 server.listen(process.env.PORT, () => {
 	// eslint-disable-next-line no-undef
 	console.log(`Server Started at ${process.env.PORT}`);
+	throw new Error("broken");
 });

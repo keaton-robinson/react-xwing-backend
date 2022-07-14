@@ -65,7 +65,11 @@ const sendAlertNotifications = async (alertMessage) => {
 	}
 };
   
-const logErrorsAndShutdownServer = (error, server) => {
+const logErrorsAndShutdownServer = (error, server, mongoose) => {
+	if(mongoose.connection.readyState != 0){
+		mongoose.connection.close();
+	}
+	
 	if(!serverClosed){	
 		console.log("Starting a graceful shutdown");
 		server.close(async () => {
