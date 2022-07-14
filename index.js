@@ -3,6 +3,8 @@ require("dotenv").config();
 const fs = require("fs");
 const https = require("https");
 const express = require("express");
+const compression = require("compression");
+const helmet = require("helmet");
 const cors = require("cors");
 const routes = require("./routes/routes");
 const { errorLoggerMiddleware, errorResponder, logError, sendAlertNotifications, logErrorsAndShutdownServer } = require("./errors");
@@ -32,7 +34,8 @@ mongoose.connection.on("error", (error) => {
 });
 
 const app = express();
-
+app.use(compression());
+app.use(helmet());
 app.use(cors()); //storing auth token in javascript accessible place instead of cookies. If I switch to cookies, I need to restrict the CORS to prevent CSRF.
 app.use(express.json());
 app.use("/", routes);
