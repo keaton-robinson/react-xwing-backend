@@ -1,7 +1,8 @@
 /* eslint-disable no-undef */
 require("dotenv").config();
-const fs = require("fs");
-const https = require("https");
+//const fs = require("fs");
+const http = require("http");
+//const https = require("https");
 const express = require("express");
 const compression = require("compression");
 const helmet = require("helmet");
@@ -42,14 +43,17 @@ app.use("/", routes);
 app.use(errorLoggerMiddleware);
 app.use(errorResponder);
 
-const server = https.createServer(
-	{
-		key: fs.readFileSync("./cert/key.pem"),
-		cert: fs.readFileSync("./cert/cert.pem"),
-	},
+// const server = https.createServer(
+// 	{
+// 		key: fs.readFileSync("./cert/key.pem"),
+// 		cert: fs.readFileSync("./cert/cert.pem"),
+// 	},
+// 	app
+// );
+
+const server = http.createServer(
 	app
 );
-
 // eslint-disable-next-line no-undef
 process.on("uncaughtException", (error) => {
 	logErrorsAndShutdownServer(error, server, mongoose);
