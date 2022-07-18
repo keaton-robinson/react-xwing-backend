@@ -25,12 +25,12 @@ const logError = async (error) => {
 };
 
 const sendAlertNotifications = async (alertMessage) => {
+	console.log(`Sending alert messages: ${alertMessage}`);
 	if(process.env.SUPRESS_ALERT_NOTIFICATIONS == "true"){
 		console.log("Would have sent alert notifications, but alerts are currently suppressed by environment variable");
 	} else {
 
 		try {
-			console.log(`Sending alert messages: ${alertMessage}`);
 			//send email notification
 			sendGridMail.setApiKey(process.env.SENDGRID_API_KEY);
 			const msg = {
