@@ -1,0 +1,1 @@
+just a handy folder to put my keys in. They need to be set in environment variables to be used by the application.
