@@ -1,5 +1,8 @@
+console.log("Starting app with NODE_ENV: " + process.env.NODE_ENV);
 /* eslint-disable no-undef */
-require("dotenv").config();
+if(process.env.NODE_ENV == "development"){
+	require("dotenv").config();
+}
 //const fs = require("fs");
 const http = require("http");
 //const https = require("https");
