@@ -3,4 +3,3 @@ node_modules/
 /cert/
 /keys/*
 !/keys/readme.txt
-/.vscode/
