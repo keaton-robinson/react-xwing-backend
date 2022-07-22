@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 console.log("Starting app with NODE_ENV: " + process.env.NODE_ENV);
 /* eslint-disable no-undef */
 if(process.env.NODE_ENV == "development"){
