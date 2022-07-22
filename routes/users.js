@@ -37,7 +37,7 @@ router.post("/register", registrationValidationChecks, function(req, res, next){
 	
 	const errors = validationResult(req);
 	if(!errors.isEmpty()) {
-		return next({ statusCode: 400, message: errors.errors[0].msg });
+		return res.status(400).json({ success: false,  message: errors.errors[0].msg });
 	}
 
 	const saltHash = utils.genPassword(req.body.password);
@@ -57,7 +57,12 @@ router.post("/register", registrationValidationChecks, function(req, res, next){
 			res.json({ success: true, user: { username: user.username }});
 		})
 		.catch((err) => {
-			next(err);
+			const usernameExistsMessage = err?.errors?.username?.message;
+			if(usernameExistsMessage == "Username already exists"){
+				res.status(400).json({ success: false,  message: usernameExistsMessage });
+			} else {
+				next(err);
+			}
 		});
 });
 
