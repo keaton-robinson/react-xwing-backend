@@ -3,3 +3,4 @@ node_modules/
 /cert/
 /keys/*
 !/keys/readme.txt
+!/keys/generateKeypair.js
